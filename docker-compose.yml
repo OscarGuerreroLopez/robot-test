@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  robots:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: robots
+    container_name: robots
+    restart: always
+    env_file: .env
+    ports:
+      - "8007:8007"
+
+    networks:
+      - api-robots-network
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server
+    ports:
+      - "6379:6379"
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - api-robots-network
+
+networks:
+  api-robots-network:
+    driver: bridge
