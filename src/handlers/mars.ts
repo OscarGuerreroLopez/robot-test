@@ -13,7 +13,7 @@ export const Mars: Handler = async (request: Request, response: Response) => {
       let instruction = request.instructions[i];
 
       const isNewRobot = instruction === "";
-      const isRobotStart = instruction.indexOf(" ") > -1;
+      const isRobotStart = instruction.includes(" ");
 
       if (isNewRobot) {
         robot = Robot();

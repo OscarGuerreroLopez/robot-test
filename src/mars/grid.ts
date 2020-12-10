@@ -1,5 +1,6 @@
 import GridException from "../exceptions/GridException";
 
+// outside the function to just get initialized once
 let forbidden: string[] = [];
 let length: number;
 let height: number;
@@ -10,7 +11,7 @@ export const Grid = (): Grid => {
   };
 
   const hasForbidden = (position: string) => {
-    return forbidden.indexOf(position) > -1;
+    return forbidden.includes(position);
   };
 
   const setGrid = (gridLength: number, gridHeight: number) => {
@@ -22,6 +23,7 @@ export const Grid = (): Grid => {
       throw new GridException("The grid cannot be smaller than 1x1");
     }
 
+    // empty the grid to process a new requests
     forbidden = [];
     length = gridLength;
     height = gridHeight;
