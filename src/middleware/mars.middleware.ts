@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
 import BodyException from "../exceptions/BodyEsception";
 
+import { Grid } from "../mars";
+
 export const MarsMiddleware = (
   request: Request,
   _response: Response,
@@ -29,6 +31,10 @@ export const MarsMiddleware = (
   if (gridValidation) {
     throw new BodyException(400, "Check the grid values");
   }
+
+  // set a new Grid for the new requests
+  // so the properties will stay the same throughout the request
+  Grid().setGrid(gridSize[0], gridSize[1]);
 
   next();
 };
