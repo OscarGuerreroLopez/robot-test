@@ -12,7 +12,10 @@ export const Mars: Handler = async (request: Request, response: Response) => {
     for (var i = 1; i < request.instructions.length; i++) {
       let instruction = request.instructions[i];
 
+      // if instruction is empty then we are dealing with a new robot
       const isNewRobot = instruction === "";
+      // if instruction has an empty space, like 1 1 E, then it is the start
+      // otherwise the instruction would come like "FRRFLLFFRRFLL"
       const isRobotStart = instruction.includes(" ");
 
       if (isNewRobot) {
