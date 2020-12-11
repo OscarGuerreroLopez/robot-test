@@ -12,13 +12,13 @@ export const NewLost = async (location: string): Promise<void> => {
         identifier: "lostRobots",
         err,
       });
-    }
-
-    if (data.length === 0) {
-      RedisClient.rpush("lostRobots", location);
-      RedisClient.expireat("lostRobots", endOfDay);
     } else {
-      RedisClient.rpush("lostRobots", location);
+      if (data.length === 0) {
+        RedisClient.rpush("lostRobots", location);
+        RedisClient.expireat("lostRobots", endOfDay);
+      } else {
+        RedisClient.rpush("lostRobots", location);
+      }
     }
   });
 };
@@ -31,17 +31,17 @@ export const Lost = async (): Promise<{
     RedisClient.lrange("lostRobots", 0, -1, (err: any, data: any) => {
       if (err) {
         reject(err);
+      } else {
+        const count = data?.length || 0;
+        const groupedData = data.reduce(
+          (result: { [key: string]: any }, element: string | number) => {
+            result[element] = (result[element] || 0) + 1;
+            return result;
+          },
+          {},
+        );
+        resolve({ count: `You have lost ${count} today`, data: groupedData });
       }
-
-      const count = data?.length || 0;
-      const groupedData = data.reduce(
-        (result: { [key: string]: any }, element: string | number) => {
-          result[element] = (result[element] || 0) + 1;
-          return result;
-        },
-        {},
-      );
-      resolve({ count: `You have lost ${count} today`, data: groupedData });
     });
   });
 };

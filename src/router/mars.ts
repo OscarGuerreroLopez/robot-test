@@ -15,6 +15,6 @@ router.post(
   asyncHandler(Mars), // main logic
 );
 
-router.get("/lost", GetLost);
+router.get("/lost", asyncHandler(GetLost));
 
 export default router;
