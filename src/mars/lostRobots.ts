@@ -5,7 +5,6 @@ import { Logger } from "../utils/winstonLogger";
 
 export const NewLost = async (location: string): Promise<void> => {
   const endOfDay: any = moment().endOf("day").valueOf();
-  console.log(location, endOfDay);
 
   RedisClient.lrange("lostRobots", 0, -1, (err: any, data: any) => {
     if (err) {
