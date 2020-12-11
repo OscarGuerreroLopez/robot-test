@@ -8,9 +8,7 @@ export const GetLost: Handler = async (
   response: Response,
 ) => {
   try {
-    console.log("@@@1111");
     const lostRobots = await Lost();
-    console.log("@@@2222", lostRobots);
 
     return response.send(lostRobots);
   } catch (error) {

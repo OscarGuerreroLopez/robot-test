@@ -36,9 +36,9 @@ export const Lost = async (): Promise<{
 
       const count = data?.length || 0;
       const groupedData = data.reduce(
-        (r: { [key: string]: any }, e: string | number) => {
-          r[e] = (r[e] || 0) + 1;
-          return r;
+        (result: { [key: string]: any }, element: string | number) => {
+          result[element] = (result[element] || 0) + 1;
+          return result;
         },
         {},
       );
