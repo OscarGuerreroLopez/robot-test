@@ -35,12 +35,6 @@ If you wonder about how I name variables, normally I use camelcase , Capitalised
 
 I included some comments in the code, again this is just for the test, if your organisation prefers no comments and have all of that explained on a document I will adapt.
 
-I also use some validators to check the payload that is coming, this is also very basic, in a real app the validations would be stricter. The app checks that the env variables are present, some would default if not present, some will make the app crash if not present.
-
-The way I have structured the folders and files also is not very elaborated, I just tried to keep the routes, handlers, middleware and domain in separate folders, again I could adapt to any other rules that you might have.
-
-I included some comments in the code, again this is just for the test, if your organisation prefers no comments and have all of that explained on a document I would adapt.
-
 I also use some validators to check the payload that is coming, this is also very basic, in a real app the validation would be stricter. I also check that the env variables are present, some would default if not present, some will make the app crash if not present.
 
 The way I've structured the folders and files is not very elaborated, I just tried to keep the routes, handlers, middleware and domain in separate folders, again I could adapt to any other rules that you might have.
