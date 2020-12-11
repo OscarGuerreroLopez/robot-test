@@ -2,12 +2,29 @@ import { Robot } from "../src/mars/robots";
 import { Grid } from "../src/mars/grid";
 import OrientationException from "../src/exceptions/OrientationException";
 
+jest.mock("../src/mars/lostRobots", () => {
+  const NewLost = async (location: string): Promise<void> => {
+    console.log(location);
+  };
+  const Lost = async (): Promise<{
+    count: string;
+    data: any;
+  }> => {
+    return new Promise((resolve) => {
+      resolve({ count: `You have lost 9 today`, data: {} });
+    });
+  };
+  return {
+    NewLost,
+    Lost,
+  };
+});
 describe("Testing Robot", () => {
   it("Should return true", () => {
     expect(true).toBe(true);
   });
 
-  it("Should return the right move", () => {
+  it("Should return the right move", async () => {
     Grid().setGrid(5, 3);
     const robot = Robot();
 

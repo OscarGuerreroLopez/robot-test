@@ -13,7 +13,7 @@ declare global {
   }
 
   interface Grid {
-    addForbidden: (position: any) => void;
+    addForbidden: (position: any, lastPosition: string) => void;
     hasForbidden: (position: any) => boolean;
     setGrid: (length: number, height: number) => void;
     length: number;

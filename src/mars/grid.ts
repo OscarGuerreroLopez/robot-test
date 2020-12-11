@@ -1,4 +1,5 @@
 import GridException from "../exceptions/GridException";
+import { NewLost } from "./lostRobots";
 
 // outside the function to just get initialized once
 let forbidden: string[] = [];
@@ -6,7 +7,8 @@ let length: number;
 let height: number;
 
 export const Grid = (): Grid => {
-  const addForbidden = (position: string) => {
+  const addForbidden = (position: string, lastPosition: string) => {
+    NewLost(lastPosition);
     forbidden.push(position);
   };
 

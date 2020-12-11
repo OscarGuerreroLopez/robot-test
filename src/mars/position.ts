@@ -52,6 +52,9 @@ export const Position = () => {
         position.x--;
       }
 
+      const lastPosition =
+        position.x + " " + position.y + " " + position.orientation;
+
       if (position.x > length) {
         position.x = length;
         position.lost = true;
@@ -75,6 +78,7 @@ export const Position = () => {
       if (position.lost) {
         addForbidden(
           position.x + " " + position.y + " " + position.orientation,
+          lastPosition,
         );
       }
     }

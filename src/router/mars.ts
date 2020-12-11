@@ -2,6 +2,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Mars } from "../handlers/mars";
+import { GetLost } from "../handlers/lost";
 import { ValidateMarsInstructionsBody } from "../utils/validators";
 import { MarsMiddleware } from "../middleware/mars.middleware";
 
@@ -13,5 +14,7 @@ router.post(
   asyncHandler(MarsMiddleware), // to do a preValidation
   asyncHandler(Mars), // main logic
 );
+
+router.get("/lost", GetLost);
 
 export default router;

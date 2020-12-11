@@ -8,6 +8,24 @@ import { Grid } from "../src/mars/grid";
 
 import HttpException from "../src/exceptions/HttpException";
 
+jest.mock("../src/mars/lostRobots", () => {
+  const NewLost = async (location: string): Promise<void> => {
+    console.log(location);
+  };
+  const Lost = async (): Promise<{
+    count: string;
+    data: any;
+  }> => {
+    return new Promise((resolve) => {
+      resolve({ count: `You have lost 9 today`, data: {} });
+    });
+  };
+  return {
+    NewLost,
+    Lost,
+  };
+});
+
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ META @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 describe("meta", () => {
   const next = () => null;
