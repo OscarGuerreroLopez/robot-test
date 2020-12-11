@@ -29,7 +29,7 @@ Since I just had a couple of hours available, I started the project with a simpl
 
 I also use a ratelimiter, so if you go crazy making a bunch of consecutive requests you will get locked a bit so you can calm down.
 
-What else?, I included some basic test with Jest, I wish I would have more time to create more test suits but… Hope that is enough for you to test me.
+What else?, I included some basic test with Jest, I wish I would have had more time to create more test suits but… Hope that is enough for you to test me.
 
 If you wonder about how I name variables, normally I use camelcase , Capitalised camelcase for exported variables and lowercase for internal variables. Obviously I can adapt to any other practices that you implement, that is just the way I am used to.
 
