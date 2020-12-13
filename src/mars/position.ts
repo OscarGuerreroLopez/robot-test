@@ -13,13 +13,18 @@ export enum RobotInstructions {
   L = "L",
 }
 
-export const Position = () => {
+interface PositionResponse {
+  position: GridPosition;
+  moveProtocols: Map<string, () => void>;
+}
+
+export const Position = (): PositionResponse => {
   const right = { N: "E", E: "S", S: "W", W: "N" };
   const left = { N: "W", W: "S", S: "E", E: "N" };
 
   const { length, height, hasForbidden, addForbidden } = Grid();
 
-  let position: GridPosition = {
+  const position: GridPosition = {
     x: 0,
     y: 0,
     orientation: "N",
@@ -87,7 +92,7 @@ export const Position = () => {
   // Creating an array of functions in case we want to extend
   // in the future, we just need to create the new function and add it
   // We would just need to change this file and the globals
-  let moveProtocols = new Map();
+  const moveProtocols: Map<string, () => void> = new Map();
 
   moveProtocols.set(RobotInstructions.R, turnRight);
   moveProtocols.set(RobotInstructions.L, turnLeft);

@@ -21,6 +21,7 @@ app.use("/", Router);
 
 app.use(middleware.ErrorMiddleware);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 process.on("uncaughtException", (e: any) => {
   Logger.error(e.message || JSON.stringify(e), {
     message: "uncaughtException",
@@ -33,6 +34,7 @@ process.on("uncaughtException", (e: any) => {
   }, 1500);
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 process.on("unhandledRejection", (e: any) => {
   Logger.error(e.message || JSON.stringify(e), {
     message: "unhandledRejection",

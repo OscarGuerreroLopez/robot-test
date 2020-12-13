@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Robot } from "../src/mars/robots";
 import { Grid } from "../src/mars/grid";
 import OrientationException from "../src/exceptions/OrientationException";

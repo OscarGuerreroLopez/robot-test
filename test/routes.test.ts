@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mockReq, mockRes } from "sinon-express-mock";
 
 import { version as __version } from "../package.json";

@@ -8,7 +8,7 @@ export const MarsMiddleware = (
   request: Request,
   _response: Response,
   next: NextFunction,
-) => {
+): void => {
   const errors = validationResult(request);
 
   if (!errors.isEmpty()) {

@@ -9,12 +9,13 @@ declare global {
   }
 
   interface IObjectLiteral {
-    [key: string]: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any;
   }
 
   interface Grid {
-    addForbidden: (position: any, lastPosition: string) => void;
-    hasForbidden: (position: any) => boolean;
+    addForbidden: (position: string, lastPosition: string) => void;
+    hasForbidden: (position: string) => boolean;
     setGrid: (length: number, height: number) => void;
     length: number;
     height: number;

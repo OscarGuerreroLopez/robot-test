@@ -8,7 +8,7 @@ export const ErrorMiddleware = (
   _request: Request,
   response: Response,
   _next: NextFunction,
-) => {
+): Response => {
   const status = error.status || 500;
   const message = error.message || "Something went wrong";
   const stack = error.stack || "No stack";
@@ -18,7 +18,7 @@ export const ErrorMiddleware = (
     stack,
   });
 
-  response.status(status).json({
+  return response.status(status).json({
     status,
     message,
   });

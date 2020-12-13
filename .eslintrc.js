@@ -12,7 +12,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/indent": 0,
     "@typescript-eslint/no-object-literal-type-assertion": 0,
-    "@typescript-eslint/camelcase": ["error", { properties: "never" }],
+    "@typescript-eslint/camelcase": "off",
     "linebreak-style": ["error", "unix"],
     "no-constant-condition": "error",
     semi: "error",

@@ -7,10 +7,10 @@ export const Mars: Handler = async (request: Request, response: Response) => {
   try {
     let robot = Robot();
 
-    let output: string = "";
+    let output = "";
 
-    for (var i = 1; i < request.instructions.length; i++) {
-      let instruction = request.instructions[i];
+    for (let i = 1; i < request.instructions.length; i++) {
+      const instruction = request.instructions[i];
 
       // if instruction is empty then we are dealing with a new robot
       const isNewRobot = instruction === "";

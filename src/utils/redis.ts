@@ -12,7 +12,7 @@ RedisClient.on("connect", () => {
   Logger.info("Redis client connected for Robot-test");
 });
 
-RedisClient.on("error", (err: any) => {
+RedisClient.on("error", (err: unknown) => {
   Logger.error("Error connecting to Redis from Robot-test", { data: err });
   process.exit(1);
 });

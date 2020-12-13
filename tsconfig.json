@@ -71,5 +71,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["node_modules"],
-  "include": ["global.d.ts", "thirdparty.d.ts", "src"]
+  "include": ["global.d.ts", "thirdparty.d.ts", "src", "test"]
 }

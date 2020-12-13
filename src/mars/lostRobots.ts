@@ -4,9 +4,9 @@ import { RedisClient } from "../utils/redis";
 import { Logger } from "../utils/winstonLogger";
 
 export const NewLost = async (location: string): Promise<void> => {
-  const endOfDay: any = moment().endOf("day").valueOf();
+  const endOfDay: number = moment().endOf("day").valueOf();
 
-  RedisClient.lrange("lostRobots", 0, -1, (err: any, data: any) => {
+  RedisClient.lrange("lostRobots", 0, -1, (err: unknown, data: string[]) => {
     if (err) {
       Logger.warn("There has been a problem setting lost robots to redis", {
         identifier: "lostRobots",
@@ -28,13 +28,13 @@ export const Lost = async (): Promise<{
   data: IObjectLiteral;
 }> => {
   return new Promise((resolve, reject) => {
-    RedisClient.lrange("lostRobots", 0, -1, (err: any, data: any) => {
+    RedisClient.lrange("lostRobots", 0, -1, (err: unknown, data: string[]) => {
       if (err) {
         reject(err);
       } else {
         const count = data?.length || 0;
         const groupedData = data.reduce(
-          (result: { [key: string]: any }, element: string | number) => {
+          (result: IObjectLiteral, element: string | number) => {
             result[element] = (result[element] || 0) + 1;
             return result;
           },

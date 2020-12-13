@@ -3,7 +3,12 @@ import OrientationException from "../exceptions/OrientationException";
 
 const validOrientationValues: string[] = Object.values(MarsOrientationEnum);
 const validRobotInstructions: string[] = Object.values(RobotInstructions);
-export const Robot = () => {
+
+interface RobotResponse {
+  setPosition: (instruction: string) => void;
+  move: (moves: string) => string;
+}
+export const Robot = (): RobotResponse => {
   const { position, moveProtocols } = Position();
 
   const setPosition = (instruction: string) => {
@@ -21,15 +26,15 @@ export const Robot = () => {
   };
 
   const move = (moves: string) => {
-    for (var i = 0; i < moves.length; i++) {
-      let instruction = moves[i];
+    for (let i = 0; i < moves.length; i++) {
+      const instruction = moves[i];
 
       if (position.lost) {
         break;
       }
 
       if (validRobotInstructions.includes(instruction)) {
-        moveProtocols.get(instruction)();
+        moveProtocols.get(instruction)!();
       } else {
         throw new OrientationException(
           `Instruction ${instruction} not valid, please check the request`,
