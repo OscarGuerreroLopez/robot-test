@@ -2,6 +2,7 @@
 import { Robot } from "../src/mars/robots";
 import { Grid } from "../src/mars/grid";
 import OrientationException from "../src/exceptions/OrientationException";
+import { shutdownRedis } from "../src/utils/redis";
 
 jest.mock("../src/mars/lostRobots", () => {
   const NewLost = async (location: string): Promise<void> => {
@@ -20,7 +21,13 @@ jest.mock("../src/mars/lostRobots", () => {
     Lost,
   };
 });
+
 describe("Testing Robot", () => {
+  afterAll(async (done) => {
+    await shutdownRedis();
+    done();
+  });
+
   it("Should return true", () => {
     expect(true).toBe(true);
   });

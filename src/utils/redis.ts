@@ -12,7 +12,17 @@ RedisClient.on("connect", () => {
   Logger.info("Redis client connected for Robot-test");
 });
 
-RedisClient.on("error", (err: unknown) => {
+RedisClient.on("error", async (err: unknown) => {
   Logger.error("Error connecting to Redis from Robot-test", { data: err });
+  await shutdownRedis();
   process.exit(1);
 });
+
+export const shutdownRedis = (): Promise<unknown> => {
+  return new Promise((resolve) => {
+    RedisClient.quit(() => {
+      console.log("DONE");
+      resolve();
+    });
+  });
+};

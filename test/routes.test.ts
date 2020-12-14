@@ -8,6 +8,7 @@ import { EnvVars } from "../src/utils/validateEnv";
 import { Grid } from "../src/mars/grid";
 
 import HttpException from "../src/exceptions/HttpException";
+import { shutdownRedis } from "../src/utils/redis";
 
 jest.mock("../src/mars/lostRobots", () => {
   const NewLost = async (location: string): Promise<void> => {
@@ -47,6 +48,11 @@ describe("meta", () => {
     });
   });
 
+  afterAll(async (done) => {
+    await shutdownRedis();
+    done();
+  });
+
   describe("getMeta()", () => {
     it("should send meta", async () => {
       await GetMeta(request, response, next);
@@ -66,6 +72,10 @@ describe("Post Mars Instructions", () => {
   let body: any;
   let status: any;
 
+  afterAll(async (done) => {
+    await shutdownRedis();
+    done();
+  });
   beforeEach(() => {
     request = mockReq({
       instructions: [
@@ -105,6 +115,11 @@ describe("Post Mars Instructions fail", () => {
   const next = () => null;
   let request: ReturnType<typeof mockReq>;
   let response: ReturnType<typeof mockRes>;
+
+  afterAll(async (done) => {
+    await shutdownRedis();
+    done();
+  });
 
   beforeEach(() => {
     request = mockReq({
