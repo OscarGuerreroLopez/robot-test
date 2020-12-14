@@ -21,7 +21,6 @@ RedisClient.on("error", async (err: unknown) => {
 export const shutdownRedis = (): Promise<unknown> => {
   return new Promise((resolve) => {
     RedisClient.quit(() => {
-      console.log("DONE");
       resolve();
     });
   });
