@@ -1,5 +1,5 @@
 import { Result, ValidationError } from "express-validator";
-// import qs from "qs";
+import qs from "qs";
 
 class BodyException extends Error {
   status: number;
@@ -13,8 +13,7 @@ class BodyException extends Error {
     super(message);
     this.status = status;
     this.message = message;
-    this.stack = "no stack";
-    console.log(stack);
+    this.stack = qs.stringify(stack) || "no stack";
   }
 }
 
